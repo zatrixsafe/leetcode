@@ -3,7 +3,7 @@
 
 class Solution:
     def f(self, nums, k):
-        ans = qsort(nums, 0, len(nums), k)
+        ans = qsort(nums, 0, len(nums)-1, k)
 
     def qsort(self, nums, beg, end, k):
         q = sf(self, nums, beg, end) 
@@ -15,6 +15,7 @@ class Solution:
             qsort(self, nums, beg, q, k)
 
     def sf(self, nums, k, beg, end):
+        if beg >= end:
+            return
         prid = beg
-        for i in range(beg+1,end):
-            
+        #get the number of the prid 
