@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+# File Name: KthNumber.py
+
+class Solution:
+    def f(self, nums, k):
+        ans = self.qsort(nums, 0, len(nums)-1, k)
+        return ans
+    def qsort(self, nums, beg, end, k):
+        q = self.sf(nums, beg, end) 
+        if k == q:
+            return nums[beg+q] 
+        elif k > q:
+            self.qsort(nums, q+1, end, k-q)
+        else:
+            self.qsort(nums, beg, q-1, k)
+
+    def sf(self, nums, beg, end):
+        if beg >= end or beg < 0:
+            return 0
+        elif end >= len(nums):
+            return len(nums) - 1
+        x = nums[end] 
+        cnt = -1
+        for i in range(beg, end):
+            if nums[i] <= x:
+                cnt += 1
+                nums[i], nums[cnt] = nums[cnt], nums[i]
+        nums[end], nums[cnt+1] = nums[cnt+1], nums[end]
+        print nums
+        return cnt + 1 
+
+s = Solution()
+k = [1,2,3]
+print s.f(k,1)
